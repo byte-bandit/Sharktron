@@ -14,9 +14,9 @@ public class Sharktron extends BasicGame
 	 * Konstruktor
 	 */
 	public Sharktron()
-  {
-	  super("Hello World");
-  }
+    {
+        super("Hello World");
+    }
  
   	/**
 	 *
@@ -24,19 +24,19 @@ public class Sharktron extends BasicGame
 	 * @throws SlickException
 	 */
 	@Override
-  public void init(GameContainer gc) throws SlickException
-  {
-	  /*
-	  Configuration.WINDOW_ASPECT_RATIO = gc.getAspectRatio();
-	  Configuration.WINDOW_HEIGHT = gc.getHeight();
-	  Configuration.WINDOW_WIDTH = gc.getWidth();
-	  Configuration.WINDOW_SCREEN_HEIGHT = gc.getScreenHeight();
-	  Configuration.WINDOW_SCREEN_WIDTH = gc.getScreenWidth();
-	  */
-	  
-	  System.out.println(System.getProperty("user.dir"));
-	  // GFXLibrary.init();
-  }
+    public void init(GameContainer gc) throws SlickException
+    {
+        /*
+        Configuration.WINDOW_ASPECT_RATIO = gc.getAspectRatio();
+        Configuration.WINDOW_HEIGHT = gc.getHeight();
+        Configuration.WINDOW_WIDTH = gc.getWidth();
+        Configuration.WINDOW_SCREEN_HEIGHT = gc.getScreenHeight();
+        Configuration.WINDOW_SCREEN_WIDTH = gc.getScreenWidth();
+        */
+
+        System.out.println(System.getProperty("user.dir"));
+        // GFXLibrary.init();
+    }
  
   	/**
 	 *
@@ -45,10 +45,10 @@ public class Sharktron extends BasicGame
 	 * @throws SlickException
 	 */
 	@Override
-  public void update(GameContainer gc, int delta) throws SlickException
-  {
+    public void update(GameContainer gc, int delta) throws SlickException
+    {
 	  
-  }
+    }
  
   	/**
 	 *
@@ -57,10 +57,10 @@ public class Sharktron extends BasicGame
 	 * @throws SlickException
 	 */
 	@Override
-  public void render(GameContainer gc, Graphics g) throws SlickException
-  {
+    public void render(GameContainer gc, Graphics g) throws SlickException
+    {
 	  
-  }
+    }
  
   	/**
 	 *
@@ -68,10 +68,9 @@ public class Sharktron extends BasicGame
 	 * @throws SlickException
 	 */
 	public static void main(String[] args) throws SlickException
-  {
-     AppGameContainer app = new AppGameContainer(new Sharktron());
- 
-     app.setDisplayMode(800, 600, false);
-     app.start();
-  }
+    {
+        AppGameContainer app = new AppGameContainer(new Sharktron());
+        app.setDisplayMode(800, 600, false);
+        app.start();
+    }
 }
