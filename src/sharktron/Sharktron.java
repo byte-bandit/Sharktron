@@ -26,13 +26,7 @@ public class Sharktron extends BasicGame
 	@Override
     public void init(GameContainer gc) throws SlickException
     {
-        /*
-        Configuration.WINDOW_ASPECT_RATIO = gc.getAspectRatio();
-        Configuration.WINDOW_HEIGHT = gc.getHeight();
-        Configuration.WINDOW_WIDTH = gc.getWidth();
-        Configuration.WINDOW_SCREEN_HEIGHT = gc.getScreenHeight();
-        Configuration.WINDOW_SCREEN_WIDTH = gc.getScreenWidth();
-        */
+        loadRuntimeConfiguration(gc);
 
         System.out.println(System.getProperty("user.dir"));
         // GFXLibrary.init();
@@ -59,7 +53,7 @@ public class Sharktron extends BasicGame
 	@Override
     public void render(GameContainer gc, Graphics g) throws SlickException
     {
-	  
+        
     }
  
   	/**
@@ -72,5 +66,17 @@ public class Sharktron extends BasicGame
         AppGameContainer app = new AppGameContainer(new Sharktron());
         app.setDisplayMode(800, 600, false);
         app.start();
+    }
+
+    /**
+     * Loads all relevant runtime information into the config
+     */
+    private void loadRuntimeConfiguration(GameContainer gc)
+    {
+        RuntimeConfiguration.WINDOW_ASPECT_RATIO = gc.getAspectRatio();
+        RuntimeConfiguration.WINDOW_HEIGHT = gc.getHeight();
+        RuntimeConfiguration.WINDOW_WIDTH = gc.getWidth();
+        RuntimeConfiguration.WINDOW_SCREEN_HEIGHT = gc.getScreenHeight();
+        RuntimeConfiguration.WINDOW_SCREEN_WIDTH = gc.getScreenWidth();
     }
 }
