@@ -15,5 +15,5 @@ public class RuntimeConfiguration
 	public static int WINDOW_SCREEN_WIDTH;
     public static GameContainer GAME_CONTAINER;
     
-    public static final String PATH_TO_GFX = "D:\\dumps\\";
+    public static final String PATH_TO_GFX = System.getProperty("user.dir") + "\\gfx\\";
 }

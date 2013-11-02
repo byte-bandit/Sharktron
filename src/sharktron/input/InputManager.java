@@ -20,10 +20,24 @@ public class InputManager
      */
     public static void init()
     {
-        input = new Input(RuntimeConfiguration.WINDOW_SCREEN_HEIGHT);
+        input = RuntimeConfiguration.GAME_CONTAINER.getInput();
     }
     
     /**
+     * Returns the current absolute mouse position as a Slick2D Point.
+     * 
+     * @return Mouse position
+     */
+    public static Point getAbsoluteMousePosition()
+    {
+        int x = input.getAbsoluteMouseX();
+        int y = input.getAbsoluteMouseY();
+        
+        return new Point(x, y);
+    }
+    
+    
+     /**
      * Returns the current mouse position as a Slick2D Point.
      * 
      * @return Mouse position
