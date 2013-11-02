@@ -53,7 +53,6 @@ public class Sharktron extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
         UpdateManager.update(gc, delta);
         player.update(gc, delta);
-        System.out.println(InputManager.getMousePosition().getX() + " " + InputManager.getMousePosition().getY());
         
         if (InputManager.isEscKeyDown())
         {

@@ -66,6 +66,29 @@ public class Player implements IDrawable, IUpdateable
         this.getPosition().setX(InputManager.getMousePosition().getX());
         this.getPosition().setY(InputManager.getMousePosition().getY());
         
+        // Cap the player in certain boundaries
+        // Rectangle at : 10, 10
+        // Width = Screen Width - Image height - 10
+        // Height = Screen Height - Image height - 10
+        
+        if (this.getPosition().getX() < 10.0f)
+        {
+            this.getPosition().setX(10.0f);
+        }
+        else if (this.getPosition().getX() > gc.getWidth() - this.gfx.getWidth() - 10)
+        {
+            this.getPosition().setX(gc.getWidth() - this.gfx.getWidth() - 10);
+        }
+        
+        if (this.getPosition().getY() < 10.0f)
+        {
+            this.getPosition().setY(10.0f);
+        }
+        else if (this.getPosition().getY() > gc.getHeight() - this.gfx.getHeight() - 10)
+        {
+            this.getPosition().setY(gc.getHeight() - this.gfx.getHeight() - 10);
+        }
+        
     }
 
 }
