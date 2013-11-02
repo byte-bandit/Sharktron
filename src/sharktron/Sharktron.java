@@ -1,6 +1,9 @@
 package sharktron;
 
 import org.newdawn.slick.*;
+import sharktron.controlling.UpdateManager;
+import sharktron.rendering.GFXLib;
+import sharktron.rendering.RenderingManager;
 
 
 /**
@@ -26,7 +29,11 @@ public class Sharktron extends BasicGame
 	@Override
     public void init(GameContainer gc) throws SlickException
     {
+        // Always keep this first!
         loadRuntimeConfiguration(gc);
+        
+        // Always keep this second!
+        GFXLib.init();
 
         System.out.println(System.getProperty("user.dir"));
     }
@@ -40,7 +47,7 @@ public class Sharktron extends BasicGame
 	@Override
     public void update(GameContainer gc, int delta) throws SlickException
     {
-	  
+        UpdateManager.update(gc, delta);
     }
  
   	/**
@@ -52,7 +59,9 @@ public class Sharktron extends BasicGame
 	@Override
     public void render(GameContainer gc, Graphics g) throws SlickException
     {
+        RenderingManager.render(g);
         
+        g.drawImage(GFXLib.player(), 200, 200);
     }
  
   	/**
@@ -63,6 +72,9 @@ public class Sharktron extends BasicGame
 	public static void main(String[] args) throws SlickException
     {
         AppGameContainer app = new AppGameContainer(new Sharktron());
+        app.setVSync(true);
+        app.setSmoothDeltas(true);
+        app.setTargetFrameRate(60);
         app.setDisplayMode(800, 600, false);
         app.start();
     }
@@ -77,5 +89,6 @@ public class Sharktron extends BasicGame
         RuntimeConfiguration.WINDOW_WIDTH = gc.getWidth();
         RuntimeConfiguration.WINDOW_SCREEN_HEIGHT = gc.getScreenHeight();
         RuntimeConfiguration.WINDOW_SCREEN_WIDTH = gc.getScreenWidth();
+        RuntimeConfiguration.GAME_CONTAINER = gc;
     }
 }
