@@ -29,7 +29,6 @@ public class Sharktron extends BasicGame
         loadRuntimeConfiguration(gc);
 
         System.out.println(System.getProperty("user.dir"));
-        // GFXLibrary.init();
     }
  
   	/**
