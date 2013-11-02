@@ -8,5 +8,9 @@ import org.newdawn.slick.Graphics;
  */
 public interface IDrawable
 {
+    /**
+     * Draw the component
+     * @param g The graphics of the main module
+     */
     public void draw(Graphics g);
 }
