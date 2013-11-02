@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Point;
 import sharktron.logic.IUpdateable;
 import sharktron.input.InputManager;
 import sharktron.logic.UpdateManager;
+import sharktron.rendering.DrawableGameComponent;
 import sharktron.rendering.GFXLib;
 import sharktron.rendering.IDrawable;
 import sharktron.rendering.RenderingManager;
@@ -16,11 +17,10 @@ import sharktron.rendering.RenderingManager;
  * The class represents the player character in game.
  * @author Kna
  */
-public class Player implements IDrawable, IUpdateable
+public class Player extends DrawableGameComponent implements IDrawable, IUpdateable
 {
     
     private Animation gfx;
-    private Point position;
     private Color filter;
     private boolean disposable;
 
@@ -38,15 +38,6 @@ public class Player implements IDrawable, IUpdateable
         this.position = new Point(x, y);
     }
     
-    /**
-     * Get the value of position
-     *
-     * @return the value of position
-     */
-    public Point getPosition()
-    {
-        return position;
-    }
     
     /**
      * Will draw the player image to the screen

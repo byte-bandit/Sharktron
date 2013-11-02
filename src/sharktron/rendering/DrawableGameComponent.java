@@ -9,7 +9,7 @@ import org.newdawn.slick.geom.Point;
  */
 public abstract class DrawableGameComponent
 {
-    private Point position;
+    protected Point position;
     protected Color filter = Color.white;
     
     /**

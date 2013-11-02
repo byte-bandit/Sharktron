@@ -21,7 +21,8 @@ public class Sharktron extends BasicGame {
     /**
      * Konstruktor
      */
-    public Sharktron() {
+    public Sharktron()
+    {
         super("Hello World");
     }
 
@@ -31,7 +32,8 @@ public class Sharktron extends BasicGame {
      * @throws SlickException
      */
     @Override
-    public void init(GameContainer gc) throws SlickException {
+    public void init(GameContainer gc) throws SlickException
+    {
 
         // Always keep this first!
         loadRuntimeConfiguration(gc);
@@ -51,7 +53,8 @@ public class Sharktron extends BasicGame {
      * @throws SlickException
      */
     @Override
-    public void update(GameContainer gc, int delta) throws SlickException {
+    public void update(GameContainer gc, int delta) throws SlickException
+    {
         UpdateManager.update(gc, delta);
         player.update(gc, delta);
         
@@ -68,7 +71,8 @@ public class Sharktron extends BasicGame {
      * @throws SlickException
      */
     @Override
-    public void render(GameContainer gc, Graphics g) throws SlickException {
+    public void render(GameContainer gc, Graphics g) throws SlickException
+    {
         RenderingManager.render(g);
         player.draw(g);
         
@@ -81,7 +85,8 @@ public class Sharktron extends BasicGame {
      * @param args
      * @throws SlickException
      */
-    public static void main(String[] args) throws SlickException {
+    public static void main(String[] args) throws SlickException
+    {
         AppGameContainer app = new AppGameContainer(new Sharktron());
 
         app.setVSync(true);
@@ -95,7 +100,8 @@ public class Sharktron extends BasicGame {
     /**
      * Loads all relevant runtime information into the config
      */
-    private void loadRuntimeConfiguration(GameContainer gc) {
+    private void loadRuntimeConfiguration(GameContainer gc)
+    {
         RuntimeConfiguration.WINDOW_ASPECT_RATIO  = gc.getAspectRatio();
         RuntimeConfiguration.WINDOW_HEIGHT        = gc.getHeight();
         RuntimeConfiguration.WINDOW_WIDTH         = gc.getWidth();
