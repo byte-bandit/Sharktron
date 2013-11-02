@@ -1,7 +1,10 @@
-package sharktron.controlling;
+package sharktron.logic;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import org.newdawn.slick.GameContainer;
+import sharktron.rendering.IDrawable;
+import sharktron.rendering.RenderingManager;
 
 /**
  * This class provides bootstrap functionality for rendering purposes
@@ -31,15 +34,33 @@ public class UpdateManager
     }
     
     /**
+     * Returns the number of children.
+     * @return The number of children.
+     */
+    public static int size()
+    {
+        return children.size();
+    }
+    
+    /**
      * Updates all children.
      * @param gc The game controller of the main module.
      * @param delta  The delta element of the main module.
      */
     public static void update(GameContainer gc, int delta)
     {
-        for(IUpdateable i : children)
+        Iterator<IUpdateable> i = children.iterator();
+        
+        while(i.hasNext())
         {
-            i.update(gc, delta);
+            IUpdateable d = i.next();
+            d.update(gc, delta);
+            
+            if (d.isDisposable())
+            {
+                RenderingManager.removeChild((IDrawable) d);
+                i.remove();
+            }
         }
     }
 }

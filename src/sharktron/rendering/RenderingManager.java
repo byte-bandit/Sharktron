@@ -1,5 +1,6 @@
 package sharktron.rendering;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import org.newdawn.slick.Graphics;
 
@@ -30,15 +31,26 @@ public class RenderingManager
         children.remove(child);  
     }
     
+     /**
+     * Returns the number of children.
+     * @return The number of children.
+     */
+    public static int size()
+    {
+        return children.size();
+    }
+    
     /**
      * Will call the render method to all of its children
      * @param g The graphics module of the main frame
      */
     public static void render(Graphics g)
     {
-        for(IDrawable d : children)
+        Iterator<IDrawable> i = children.iterator();
+        
+        while(i.hasNext())
         {
-            d.draw(g);
+            i.next().draw(g);
         }
     }
 }

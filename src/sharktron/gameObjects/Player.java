@@ -1,14 +1,16 @@
-package sharktron;
+package sharktron.gameObjects;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Point;
-import sharktron.controlling.IUpdateable;
+import sharktron.logic.IUpdateable;
 import sharktron.input.InputManager;
+import sharktron.logic.UpdateManager;
 import sharktron.rendering.GFXLib;
 import sharktron.rendering.IDrawable;
+import sharktron.rendering.RenderingManager;
 
 /**
  * The class represents the player character in game.
@@ -20,6 +22,7 @@ public class Player implements IDrawable, IUpdateable
     private Animation gfx;
     private Point position;
     private Color filter;
+    private boolean disposable;
 
     private final int animSpeed = 100;
     
@@ -89,6 +92,30 @@ public class Player implements IDrawable, IUpdateable
             this.getPosition().setY(gc.getHeight() - this.gfx.getHeight() - 10);
         }
         
+        
+        // Some Shoot Testing
+        if (InputManager.isLeftMouseDown())
+        {
+            RedBullet b = new RedBullet(this.getPosition());
+            RenderingManager.addChild(b);
+            UpdateManager.addChild(b);
+            
+            b = new RedBullet(this.getPosition());
+            b.getVelocity().setY(1);
+            RenderingManager.addChild(b);
+            UpdateManager.addChild(b);
+            
+            b = new RedBullet(this.getPosition());
+            b.getVelocity().setY(-1);
+            RenderingManager.addChild(b);
+            UpdateManager.addChild(b);
+        }
+    }
+
+    @Override
+    public boolean isDisposable()
+    {
+        return this.disposable;
     }
 
 }

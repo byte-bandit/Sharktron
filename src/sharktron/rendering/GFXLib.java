@@ -15,6 +15,7 @@ public class GFXLib
 {
     
     private static SpriteSheet imgPlayer;
+    private static Image imgRedBullet;
     
     /**
      * Initializes the GFX Library and loads all image data from the harddrive
@@ -24,6 +25,8 @@ public class GFXLib
         try
         {
             imgPlayer = new SpriteSheet(RuntimeConfiguration.PATH_TO_GFX + "player.png", 62, 57);
+            imgRedBullet = new Image(RuntimeConfiguration.PATH_TO_GFX + "redBullet.png");
+                
         }
         catch (SlickException ex)
         {
@@ -38,6 +41,15 @@ public class GFXLib
     public static SpriteSheet getPlayerSpriteSheet()
     {
         return imgPlayer;
+    }
+    
+    /**
+     * Returns an image of a red bullet.
+     * @return The red bullet.
+     */
+    public static Image getBulletRed()
+    {
+        return imgRedBullet;
     }
 
 }
