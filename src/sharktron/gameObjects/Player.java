@@ -14,7 +14,6 @@ import sharktron.rendering.GFXLib;
 import sharktron.rendering.IDrawable;
 import sharktron.rendering.RenderingManager;
 import sharktron.sound.SoundLibrary;
-import sharktron.sound.SoundManager;
 
 /**
  * The class represents the player character in game.
@@ -22,7 +21,6 @@ import sharktron.sound.SoundManager;
  */
 public class Player extends DrawableGameComponent implements IDrawable, IUpdateable
 {
-    
     private Animation gfx;
     private Color filter;
     private boolean disposable;
@@ -127,13 +125,13 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
             UpdateManager.addChild(b);
             
             // Sound testing
-            SoundManager.playAsSoundEffect(SoundLibrary.getSound(SoundLibrary.LASER));
+            SoundLibrary.getSound(SoundLibrary.LASER).playAsSoundEffect(1.0f, 0.1f, false);
         }
         
         // Still testing sound
         if (InputManager.isRightMouseDown())
         {
-            SoundManager.playAsSoundEffect(SoundLibrary.getSound(SoundLibrary.ROCKET));
+            SoundLibrary.getSound(SoundLibrary.ROCKET).playAsSoundEffect(1.0f, 0.1f, false);
         }
     }
 
