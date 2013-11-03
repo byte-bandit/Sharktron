@@ -12,6 +12,8 @@ import sharktron.rendering.DrawableGameComponent;
 import sharktron.rendering.GFXLib;
 import sharktron.rendering.IDrawable;
 import sharktron.rendering.RenderingManager;
+import sharktron.sound.SoundLibrary;
+import sharktron.sound.SoundManager;
 
 /**
  * The class represents the player character in game.
@@ -100,6 +102,9 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
             b.getVelocity().setY(-1);
             RenderingManager.addChild(b);
             UpdateManager.addChild(b);
+            
+            // Sound testing
+            SoundManager.playAsSoundEffect(SoundLibrary.getSound("laser"));
         }
     }
 

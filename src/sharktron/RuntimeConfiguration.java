@@ -16,4 +16,5 @@ public class RuntimeConfiguration
     public static GameContainer GAME_CONTAINER;
     
     public static final String PATH_TO_GFX = System.getProperty("user.dir") + "\\gfx\\";
+    public static final String PATH_TO_SFX = System.getProperty("user.dir") + "\\sfx\\";
 }
