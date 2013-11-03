@@ -15,6 +15,18 @@ public class SoundLibrary
 {
     private static Audio sound;
     
+    public static final String LASER  = "laser";
+    public static final String ROCKET = "rocket";
+    
+    /**
+     * Initializes the Sound Library and loads all image data from the harddrive
+     */
+    public static void init()
+    {
+        loadSound(LASER);
+        loadSound(ROCKET);
+    }
+    
     /**
      * Loads and returns a sound effect or music track with the given file name.
      * 

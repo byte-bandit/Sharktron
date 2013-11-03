@@ -105,7 +105,13 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
             UpdateManager.addChild(b);
             
             // Sound testing
-            SoundManager.playAsSoundEffect(SoundLibrary.getSound("laser"));
+            SoundManager.playAsSoundEffect(SoundLibrary.getSound(SoundLibrary.LASER));
+        }
+        
+        // Still testing sound
+        if (InputManager.isRightMouseDown())
+        {
+            SoundManager.playAsSoundEffect(SoundLibrary.getSound(SoundLibrary.ROCKET));
         }
     }
 
