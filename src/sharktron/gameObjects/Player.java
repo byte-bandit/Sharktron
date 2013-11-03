@@ -1,5 +1,6 @@
 package sharktron.gameObjects;
 
+import java.util.concurrent.TimeUnit;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -26,7 +27,7 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
     private Color filter;
     private boolean disposable;
 
-    private final int animSpeed = 100;
+    private final int animSpeed = 70;
     
     /**
      * Creates a new player.
@@ -36,6 +37,8 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
     public Player(int x, int y)
     {
         this.gfx = new Animation(GFXLib.getPlayerSpriteSheet(), this.animSpeed);
+        this.gfx.stopAt(0);
+        
         this.filter = Color.white;
         this.position = new Point(x, y);
     }
@@ -47,7 +50,14 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
     @Override
     public void draw(Graphics g)
     {
-        this.gfx.draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+        if (this.gfx.isStopped())
+        {
+            this.gfx.getCurrentFrame().draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+        }
+        else
+        {
+            this.gfx.draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+        }
     }
 
     /**
@@ -85,20 +95,33 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
             this.getPosition().setY(gc.getHeight() - this.gfx.getHeight() - 10);
         }
         
+        if (InputManager.isLeftMouseDown() || InputManager.isRightMouseDown())
+        {
+            this.gfx.start();
+            this.gfx.stopAt(3);
+        }
+        else
+        {
+            this.gfx.start();
+            this.gfx.stopAt(0);
+        }
         
-        // Some Shoot Testing
+        
         if (InputManager.isLeftMouseDown())
         {
-            RedBullet b = new RedBullet(this.getPosition());
+            int bulletX = this.getPositionX() + 52;
+            int bulletY = this.getPositionY();
+            
+            RedBullet b = new RedBullet(bulletX, bulletY);
             RenderingManager.addChild(b);
             UpdateManager.addChild(b);
             
-            b = new RedBullet(this.getPosition());
+            b = new RedBullet(bulletX, bulletY);
             b.getVelocity().setY(1);
             RenderingManager.addChild(b);
             UpdateManager.addChild(b);
             
-            b = new RedBullet(this.getPosition());
+            b = new RedBullet(bulletX, bulletY);
             b.getVelocity().setY(-1);
             RenderingManager.addChild(b);
             UpdateManager.addChild(b);

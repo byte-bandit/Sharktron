@@ -48,5 +48,24 @@ public abstract class DrawableGameComponent
     {
         return position;
     }
-
+    
+    /**
+     * Get the X value of position
+     *
+     * @return the X value of position
+     */
+    public int getPositionX()
+    {
+        return (int) position.getX();
+    }
+    
+    /**
+     * Get the Y value of position
+     *
+     * @return the Y value of position
+     */
+    public int getPositionY()
+    {
+        return (int) position.getY();
+    }
 }
