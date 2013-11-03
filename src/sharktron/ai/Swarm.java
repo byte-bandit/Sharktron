@@ -13,7 +13,7 @@ import sharktron.rendering.IDrawable;
  *
  * @author Kna
  */
-public class Swarm extends DrawableGameComponent implements IDrawable, IUpdateable
+public class Swarm implements IDrawable, IUpdateable
 {
 
     private LinkedList<Bot> bots;
@@ -68,5 +68,11 @@ public class Swarm extends DrawableGameComponent implements IDrawable, IUpdateab
     public boolean isDisposable()
     {
         return this.disposable;
+    }
+
+    @Override
+    public void dispose()
+    {
+        this.disposable = true;
     }
 }

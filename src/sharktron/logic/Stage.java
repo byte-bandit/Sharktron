@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import sharktron.ai.Wave;
-import sharktron.rendering.DrawableGameComponent;
 import sharktron.rendering.IDrawable;
 
 /**
@@ -14,7 +13,7 @@ import sharktron.rendering.IDrawable;
  *
  * @author Kna
  */
-public class Stage extends DrawableGameComponent implements IDrawable, IUpdateable
+public class Stage implements IDrawable, IUpdateable
 {
 
     private LinkedList<Wave> waves;
@@ -75,16 +74,6 @@ public class Stage extends DrawableGameComponent implements IDrawable, IUpdateab
     }
 
     /**
-     * Set the currently dispatching / dispatched wave
-     *
-     * @param currentWave new value of currentWave
-     */
-    private void setCurrentWave(Wave currentWave)
-    {
-        this.currentWave = currentWave;
-    }
-
-    /**
      * Adds a wave to the stage.
      *
      * @param w The wave to add
@@ -120,5 +109,21 @@ public class Stage extends DrawableGameComponent implements IDrawable, IUpdateab
     public void draw(Graphics g)
     {
         this.currentWave.draw(g);
+    }
+
+    @Override
+    public void dispose()
+    {
+        this.disposable = true;
+    }
+
+    /**
+     * Set the currently dispatching / dispatched wave
+     *
+     * @param currentWave new value of currentWave
+     */
+    private void setCurrentWave(Wave currentWave)
+    {
+        this.currentWave = currentWave;
     }
 }

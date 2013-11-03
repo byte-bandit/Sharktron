@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import sharktron.logic.IUpdateable;
-import sharktron.rendering.DrawableGameComponent;
 import sharktron.rendering.IDrawable;
 
 /**
@@ -13,7 +12,7 @@ import sharktron.rendering.IDrawable;
  *
  * @author Kna
  */
-public class Wave extends DrawableGameComponent implements IDrawable, IUpdateable
+public class Wave implements IDrawable, IUpdateable
 {
 
     private LinkedList<Swarm> swarms;
@@ -85,14 +84,10 @@ public class Wave extends DrawableGameComponent implements IDrawable, IUpdateabl
         return currentSwarm;
     }
 
-    /**
-     * Set the currently dispatched / dispatching swarm
-     *
-     * @param currentSwarm new value of currentSwarm
-     */
-    private void setCurrentSwarm(Swarm currentSwarm)
+    @Override
+    public void dispose()
     {
-        this.currentSwarm = currentSwarm;
+        this.disposable = true;
     }
 
     @Override
@@ -111,5 +106,15 @@ public class Wave extends DrawableGameComponent implements IDrawable, IUpdateabl
     public boolean isDisposable()
     {
         return this.disposable;
+    }
+
+    /**
+     * Set the currently dispatched / dispatching swarm
+     *
+     * @param currentSwarm new value of currentSwarm
+     */
+    private void setCurrentSwarm(Swarm currentSwarm)
+    {
+        this.currentSwarm = currentSwarm;
     }
 }

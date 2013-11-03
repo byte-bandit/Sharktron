@@ -4,6 +4,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Point;
 import sharktron.logic.IUpdateable;
 import sharktron.input.InputManager;
@@ -22,7 +23,7 @@ import sharktron.sound.SoundManager;
 public class Player extends DrawableGameComponent implements IDrawable, IUpdateable
 {
     
-    private Animation gfx;
+    // private Animation gfx;
     private Color filter;
     private boolean disposable;
 
@@ -47,7 +48,7 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
     @Override
     public void draw(Graphics g)
     {
-        this.gfx.draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+        ((Animation)this.gfx).draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
     }
 
     /**
@@ -71,18 +72,18 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
         {
             this.getPosition().setX(10.0f);
         }
-        else if (this.getPosition().getX() > gc.getWidth() - this.gfx.getWidth() - 10)
+        else if (this.getPosition().getX() > gc.getWidth() - ((Animation)this.gfx).getWidth() - 10)
         {
-            this.getPosition().setX(gc.getWidth() - this.gfx.getWidth() - 10);
+            this.getPosition().setX(gc.getWidth() - ((Animation)this.gfx).getWidth() - 10);
         }
         
         if (this.getPosition().getY() < 10.0f)
         {
             this.getPosition().setY(10.0f);
         }
-        else if (this.getPosition().getY() > gc.getHeight() - this.gfx.getHeight() - 10)
+        else if (this.getPosition().getY() > gc.getHeight() - ((Animation)this.gfx).getHeight() - 10)
         {
-            this.getPosition().setY(gc.getHeight() - this.gfx.getHeight() - 10);
+            this.getPosition().setY(gc.getHeight() - ((Animation)this.gfx).getHeight() - 10);
         }
         
         

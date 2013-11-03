@@ -1,18 +1,12 @@
 package sharktron.gameObjects;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Point;
-import sharktron.logic.GameProgressionManager;
 import sharktron.logic.IUpdateable;
-import sharktron.logic.UpdateManager;
 import sharktron.rendering.DrawableGameComponent;
-import sharktron.rendering.GFXLib;
 import sharktron.rendering.IDrawable;
-import sharktron.rendering.RenderingManager;
 
 /**
  * Abstract class defining all common methods and attributes for any type of projectile.
@@ -21,15 +15,6 @@ import sharktron.rendering.RenderingManager;
 public abstract class Shot extends DrawableGameComponent implements IDrawable, IUpdateable
 {
     
-    /**
-     * Used to determine whether the Update Manager can remove the object from its list.
-     */
-    protected boolean disposable;
-    
-    /**
-     * The image used by the shot.
-     */
-    protected Image gfx;
     /**
      * The velocity of a shot is stored inside a point as vector mathematics. X and Y values of the point
      * symbolize the X and Y velocity the bullet will receive in each update call.
@@ -76,7 +61,7 @@ public abstract class Shot extends DrawableGameComponent implements IDrawable, I
     @Override
     public void draw(Graphics g)
     {
-        this.gfx.draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+        ((Image)this.gfx).draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
     }
 
     /**
@@ -87,25 +72,29 @@ public abstract class Shot extends DrawableGameComponent implements IDrawable, I
     @Override
     public void update(GameContainer gc, int delta)
     {
+        super.update(gc, delta);
+        
         this.getPosition().setX(this.getPosition().getX() + this.getVelocity().getX());
         this.getPosition().setY(this.getPosition().getY() + this.getVelocity().getY());
         
         // Remove Shot if out of boundaries
-        if (this.getPosition().getX() > gc.getWidth() + this.gfx.getWidth())
+        if (this.getPosition().getX() > gc.getWidth() + ((Image)this.gfx).getWidth())
         {
-            this.disposable = true;
+            this.dispose();
         }
         else
         {
             // Check for collision with enemies
-            
+            checkForCollision();
         }
     }
     
-    @Override
-    public boolean isDisposable()
+    /**
+     * Checks for collision with enemy units
+     */
+    public void checkForCollision()
     {
-        return this.disposable;
+        
     }
 
 }

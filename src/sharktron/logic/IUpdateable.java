@@ -23,4 +23,9 @@ public interface IUpdateable
      * @return
      */
     public boolean isDisposable();
+    
+    /**
+     * Called to allow the Update Manager to dispose the object.
+     */
+    public void dispose();
 }

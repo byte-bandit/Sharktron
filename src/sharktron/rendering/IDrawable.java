@@ -1,6 +1,7 @@
 package sharktron.rendering;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Shape;
 
 /**
  * Defines all methods needed to draw
