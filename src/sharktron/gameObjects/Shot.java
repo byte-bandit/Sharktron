@@ -6,6 +6,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Point;
+import sharktron.logic.GameProgressionManager;
 import sharktron.logic.IUpdateable;
 import sharktron.logic.UpdateManager;
 import sharktron.rendering.DrawableGameComponent;
@@ -93,6 +94,11 @@ public abstract class Shot extends DrawableGameComponent implements IDrawable, I
         if (this.getPosition().getX() > gc.getWidth() + this.gfx.getWidth())
         {
             this.disposable = true;
+        }
+        else
+        {
+            // Check for collision with enemies
+            
         }
     }
     

@@ -7,6 +7,7 @@ import org.newdawn.slick.*;
 
 import sharktron.logic.UpdateManager;
 import sharktron.input.InputManager;
+import sharktron.logic.GameProgressionManager;
 
 import sharktron.rendering.GFXLib;
 import sharktron.rendering.RenderingManager;
@@ -42,6 +43,7 @@ public class Sharktron extends BasicGame {
         GFXLib.init();
         
         InputManager.init();
+        GameProgressionManager.init();
         
         player = new Player(100, 100);
     }

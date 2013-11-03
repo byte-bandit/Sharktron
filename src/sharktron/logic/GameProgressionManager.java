@@ -2,6 +2,7 @@ package sharktron.logic;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import sharktron.gameObjects.Bot;
 
 /**
  * This class is managing all levels (stages) of the game, returning them in the
@@ -13,8 +14,45 @@ public class GameProgressionManager
 {
 
     private static LinkedList<Stage> stages;
+    private static LinkedList<Bot> activeBots;
     private static Iterator<Stage> iterator;
     private static Stage currentStage;
+    
+    /**
+     * Initializes the GameProgressionManager.
+     */
+    public static void init()
+    {
+        stages = new LinkedList<Stage>();
+        activeBots = new LinkedList<Bot>();
+    }
+    
+    /**
+     * Gets a List of all currently active bots on screen
+     * @return The list of all active bots.
+     */
+    public static LinkedList<Bot> getActiveBots()
+    {
+        return activeBots;
+    }
+    
+    /**
+     * Adds a bot to the list of currently active bots on screen
+     * @param b The bot to add
+     */
+    public static void addBot(Bot b)
+    {
+        activeBots.add(b);
+    }
+    
+    /**
+     * Remove a bot from the list of currently active bots.
+     * @param b The bot to remove
+     */
+    public static void removeBot(Bot b)
+    {
+        activeBots.remove(b);
+    }
 
     /**
      * Adds a stage to the Game.
