@@ -11,6 +11,7 @@ import sharktron.logic.GameProgressionManager;
 
 import sharktron.rendering.GFXLib;
 import sharktron.rendering.RenderingManager;
+import sharktron.sound.SoundLibrary;
 
 /**
  * Main Class
@@ -41,6 +42,7 @@ public class Sharktron extends BasicGame {
 
         // Always keep this second!
         GFXLib.init();
+        SoundLibrary.init();
         
         InputManager.init();
         GameProgressionManager.init();
