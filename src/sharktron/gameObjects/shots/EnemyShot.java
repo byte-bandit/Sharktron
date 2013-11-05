@@ -1,4 +1,4 @@
-package sharktron.gameObjects;
+package sharktron.gameObjects.shots;
 
 /**
  * Resembles a shot fired by an enemy unit

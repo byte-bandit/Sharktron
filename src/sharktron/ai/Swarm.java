@@ -3,7 +3,7 @@ package sharktron.ai;
 import java.util.LinkedList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import sharktron.gameObjects.Bot;
+import sharktron.gameObjects.bots.Bot;
 import sharktron.logic.IUpdateable;
 import sharktron.rendering.DrawableGameComponent;
 import sharktron.rendering.IDrawable;
@@ -18,6 +18,14 @@ public class Swarm implements IDrawable, IUpdateable
 
     private LinkedList<Bot> bots;
     private boolean disposable;
+    
+    /**
+     * Creates a new Swarm
+     */
+    public Swarm()
+    {
+        this.bots = new LinkedList<Bot>();
+    }
 
     /**
      * Gets all bots of the swarm

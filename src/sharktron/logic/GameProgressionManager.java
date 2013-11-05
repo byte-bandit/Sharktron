@@ -2,7 +2,11 @@ package sharktron.logic;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import sharktron.gameObjects.Bot;
+import org.newdawn.slick.GameContainer;
+import sharktron.ai.Swarm;
+import sharktron.ai.Wave;
+import sharktron.gameObjects.bots.Bot;
+import sharktron.gameObjects.bots.Jack;
 
 /**
  * This class is managing all levels (stages) of the game, returning them in the
@@ -25,6 +29,19 @@ public class GameProgressionManager
     {
         stages = new LinkedList<Stage>();
         activeBots = new LinkedList<Bot>();
+        
+        Stage firstStage = new Stage();
+        Wave firstWave = new Wave();
+        Swarm firstSwarm = new Swarm();
+        firstSwarm.addBot(new Jack());
+        firstWave.addSwarm(firstSwarm);
+        firstStage.addWave(firstWave);
+        
+        stages.add(firstStage);
+        
+        getFirstStage();
+        firstStage.getNextWave();
+        firstWave.getNextSwarm();
     }
     
     /**
@@ -150,5 +167,15 @@ public class GameProgressionManager
                 return null;
             }
         }
+    }
+    
+    /**
+     * Updates the Level logic
+     * @param gc
+     * @param delta 
+     */
+    public static void update(GameContainer gc, int delta)
+    {
+        getCurrentStage().update(gc, delta);
     }
 }

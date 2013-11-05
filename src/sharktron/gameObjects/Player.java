@@ -1,5 +1,6 @@
 package sharktron.gameObjects;
 
+import sharktron.gameObjects.shots.RedBullet;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -36,9 +37,10 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
      */
     public Player(int x, int y)
     {
+        super(x, y);
         this.gfx = new Animation(GFXLib.getPlayerSpriteSheet(), this.animSpeed);
         this.filter = Color.white;
-        this.position = new Point(x, y);
+        this.init();
     }
     
     

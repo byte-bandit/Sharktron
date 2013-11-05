@@ -60,6 +60,8 @@ public class Sharktron extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException
     {
         UpdateManager.update(gc, delta);
+        GameProgressionManager.update(gc, delta);
+        
         player.update(gc, delta);
         
         if (InputManager.isEscKeyDown())

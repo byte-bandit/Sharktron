@@ -1,4 +1,4 @@
-package sharktron.gameObjects;
+package sharktron.gameObjects.bots;
 
 import org.newdawn.slick.GameContainer;
 import sharktron.logic.GameProgressionManager;
@@ -29,6 +29,7 @@ public abstract class Bot extends DrawableGameComponent
     @Override
     public void update(GameContainer gc, int delta)
     {
+        super.update(gc, delta);
         // Implement behavior
     }
 

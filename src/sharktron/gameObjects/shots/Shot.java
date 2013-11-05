@@ -1,9 +1,11 @@
-package sharktron.gameObjects;
+package sharktron.gameObjects.shots;
 
+import sharktron.gameObjects.bots.Bot;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Point;
+import sharktron.logic.GameProgressionManager;
 import sharktron.logic.IUpdateable;
 import sharktron.rendering.DrawableGameComponent;
 import sharktron.rendering.IDrawable;
@@ -94,7 +96,13 @@ public abstract class Shot extends DrawableGameComponent implements IDrawable, I
      */
     public void checkForCollision()
     {
-        
+        for(Bot b : GameProgressionManager.getActiveBots())
+        {
+            if (this.isColliding(b))
+            {
+                b.dispose();
+            }
+        }
     }
 
 }

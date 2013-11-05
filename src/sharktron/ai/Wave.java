@@ -19,6 +19,14 @@ public class Wave implements IDrawable, IUpdateable
     private Iterator<Swarm> iterator;
     private Swarm currentSwarm;
     private boolean disposable;
+    
+    /**
+     * Creates a new Wave.
+     */
+    public Wave()
+    {
+        this.swarms = new LinkedList<>();
+    }
 
     /**
      * Gets all swarms of the wave.

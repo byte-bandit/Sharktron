@@ -1,4 +1,4 @@
-package sharktron.gameObjects;
+package sharktron.gameObjects.shots;
 
 import org.newdawn.slick.geom.Point;
 import sharktron.rendering.GFXLib;
@@ -11,21 +11,12 @@ import sharktron.rendering.GFXLib;
 public class RedBullet extends Shot
 {
 
-    
-    private void init()
-    {
-        this.gfx = GFXLib.getBulletRed();
-        
-        // This bullet travels only on the X axis.
-        this.velocity = new Point(10,0);
-    }
-    
     /**
      * Creates a new instance at the given position
      * @param x The X coordinate
      * @param y The Y coordinate
      */
-    public RedBullet(int x, int y)
+        public RedBullet(int x, int y)
     {
         super(x, y);
         init();
@@ -39,5 +30,16 @@ public class RedBullet extends Shot
     {
         super(pos);
         init();
+    }
+
+    @Override
+    protected void init()
+    {
+        this.gfx = GFXLib.getBulletRed();
+        
+        // This bullet travels only on the X axis.
+        this.velocity = new Point(10,0);
+        
+        super.init();
     }
 }

@@ -1,5 +1,6 @@
 package sharktron.rendering;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -70,6 +71,11 @@ public abstract class DrawableGameComponent implements IDrawable, IUpdateable
      */
     public Rectangle getBoundingBox()
     {
+        if (this.boundingBox == null)
+        {
+            this.boundingBox = this.calculateBoundingBox();
+        }
+        
         return this.boundingBox;
     }
 
@@ -81,17 +87,17 @@ public abstract class DrawableGameComponent implements IDrawable, IUpdateable
      */
     public boolean isColliding(DrawableGameComponent component)
     {
+        Rectangle r = this.getBoundingBox();
+        Rectangle r2 = component.getBoundingBox();
+
+
         return this.getBoundingBox().intersects(component.getBoundingBox());
     }
 
     @Override
     public void update(GameContainer gc, int delta)
     {
-        if (this.gfx.getClass() == Image.class)
-        {
-            this.boundingBox = new Rectangle(this.getPosition().getX(), this.getPosition().getY(), ((Image) this.gfx).getWidth(), ((Image) this.gfx).getHeight());
-        }
-
+        this.boundingBox = this.calculateBoundingBox();
     }
 
     @Override
@@ -110,5 +116,38 @@ public abstract class DrawableGameComponent implements IDrawable, IUpdateable
     public void draw(Graphics g)
     {
         ((Image) this.gfx).draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+    }
+
+    /**
+     * Calculates the bounding box and returns it as Slick2D Rectangle
+     *
+     * @return The current bounding box of the GFX
+     */
+    private Rectangle calculateBoundingBox()
+    {
+        if (this.gfx.getClass() == Image.class)
+        {
+            return new Rectangle(this.getPosition().getX(), this.getPosition().getY(), ((Image) this.gfx).getWidth(), ((Image) this.gfx).getHeight());
+        }
+        else if (this.gfx.getClass() == Animation.class)
+        {
+            return new Rectangle(this.getPosition().getX(), this.getPosition().getY(), ((Animation) this.gfx).getWidth(), ((Animation) this.gfx).getHeight());
+        }
+        else
+        {
+            return new Rectangle(0, 0, 0, 0);
+        }
+
+    }
+
+    /**
+     * Does some initialization for the object
+     */
+    protected void init()
+    {
+        if (this.gfx.getClass() == Image.class)
+        {
+            this.boundingBox = new Rectangle(this.getPosition().getX(), this.getPosition().getY(), ((Image) this.gfx).getWidth(), ((Image) this.gfx).getHeight());
+        }
     }
 }

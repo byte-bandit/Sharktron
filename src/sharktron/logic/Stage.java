@@ -27,6 +27,7 @@ public class Stage implements IDrawable, IUpdateable
     public Stage()
     {
         super();
+        this.waves = new LinkedList<>();
     }
 
     /**
