@@ -47,7 +47,7 @@ public class Sharktron extends BasicGame {
         InputManager.init();
         GameProgressionManager.init();
         
-        player = new Player(100, 100);
+        player = new Player(54, 102);
     }
 
     /**

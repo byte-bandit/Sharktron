@@ -1,6 +1,6 @@
 package sharktron.gameObjects;
 
-import sharktron.gameObjects.shots.RedBullet;
+import java.util.concurrent.TimeUnit;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -15,7 +15,6 @@ import sharktron.rendering.GFXLib;
 import sharktron.rendering.IDrawable;
 import sharktron.rendering.RenderingManager;
 import sharktron.sound.SoundLibrary;
-import sharktron.sound.SoundManager;
 
 /**
  * The class represents the player character in game.
@@ -23,12 +22,11 @@ import sharktron.sound.SoundManager;
  */
 public class Player extends DrawableGameComponent implements IDrawable, IUpdateable
 {
-    
-    // private Animation gfx;
+    private Animation gfx;
     private Color filter;
     private boolean disposable;
 
-    private final int animSpeed = 100;
+    private final int animSpeed = 70;
     
     /**
      * Creates a new player.
@@ -39,6 +37,8 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
     {
         super(x, y);
         this.gfx = new Animation(GFXLib.getPlayerSpriteSheet(), this.animSpeed);
+        this.gfx.stopAt(0);
+        
         this.filter = Color.white;
         this.init();
     }
@@ -50,7 +50,14 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
     @Override
     public void draw(Graphics g)
     {
-        ((Animation)this.gfx).draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+        if (this.gfx.isStopped())
+        {
+            this.gfx.getCurrentFrame().draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+        }
+        else
+        {
+            this.gfx.draw(this.getPosition().getX(), this.getPosition().getY(), this.filter);
+        }
     }
 
     /**
@@ -88,32 +95,45 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
             this.getPosition().setY(gc.getHeight() - ((Animation)this.gfx).getHeight() - 10);
         }
         
+        if (InputManager.isLeftMouseDown() || InputManager.isRightMouseDown())
+        {
+            this.gfx.start();
+            this.gfx.stopAt(3);
+        }
+        else
+        {
+            this.gfx.start();
+            this.gfx.stopAt(0);
+        }
         
-        // Some Shoot Testing
+        
         if (InputManager.isLeftMouseDown())
         {
-            RedBullet b = new RedBullet(this.getPosition());
+            int bulletX = this.getPositionX() + 52;
+            int bulletY = this.getPositionY();
+            
+            RedBullet b = new RedBullet(bulletX, bulletY);
             RenderingManager.addChild(b);
             UpdateManager.addChild(b);
             
-            b = new RedBullet(this.getPosition());
+            b = new RedBullet(bulletX, bulletY);
             b.getVelocity().setY(1);
             RenderingManager.addChild(b);
             UpdateManager.addChild(b);
             
-            b = new RedBullet(this.getPosition());
+            b = new RedBullet(bulletX, bulletY);
             b.getVelocity().setY(-1);
             RenderingManager.addChild(b);
             UpdateManager.addChild(b);
             
             // Sound testing
-            SoundManager.playAsSoundEffect(SoundLibrary.getSound(SoundLibrary.LASER));
+            SoundLibrary.getSound(SoundLibrary.LASER).playAsSoundEffect(1.0f, 0.1f, false);
         }
         
         // Still testing sound
         if (InputManager.isRightMouseDown())
         {
-            SoundManager.playAsSoundEffect(SoundLibrary.getSound(SoundLibrary.ROCKET));
+            SoundLibrary.getSound(SoundLibrary.ROCKET).playAsSoundEffect(1.0f, 0.1f, false);
         }
     }
 
