@@ -145,9 +145,6 @@ public abstract class DrawableGameComponent implements IDrawable, IUpdateable
      */
     protected void init()
     {
-        if (this.gfx.getClass() == Image.class)
-        {
-            this.boundingBox = new Rectangle(this.getPosition().getX(), this.getPosition().getY(), ((Image) this.gfx).getWidth(), ((Image) this.gfx).getHeight());
-        }
+        // Actually do some init()
     }
 }

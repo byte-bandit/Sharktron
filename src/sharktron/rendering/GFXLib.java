@@ -25,7 +25,7 @@ public class GFXLib
     {
         try
         {
-            imgPlayer = new SpriteSheet(RuntimeConfiguration.PATH_TO_GFX + "player.png", 62, 57);
+            imgPlayer = new SpriteSheet(RuntimeConfiguration.PATH_TO_GFX + "player.png", 54, 102);
             imgJack = new SpriteSheet(RuntimeConfiguration.PATH_TO_GFX + "jack.png", 32, 32);
             imgRedBullet = new Image(RuntimeConfiguration.PATH_TO_GFX + "redBullet.png");
                 

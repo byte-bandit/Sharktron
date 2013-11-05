@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Point;
+import sharktron.gameObjects.shots.RedBullet;
 import sharktron.logic.IUpdateable;
 import sharktron.input.InputManager;
 import sharktron.logic.UpdateManager;
@@ -109,8 +110,8 @@ public class Player extends DrawableGameComponent implements IDrawable, IUpdatea
         
         if (InputManager.isLeftMouseDown())
         {
-            int bulletX = this.getPositionX() + 52;
-            int bulletY = this.getPositionY();
+            int bulletX = (int)this.getPosition().getX() + 52;
+            int bulletY = (int)this.getPosition().getY();
             
             RedBullet b = new RedBullet(bulletX, bulletY);
             RenderingManager.addChild(b);
