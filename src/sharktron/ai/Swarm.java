@@ -3,6 +3,7 @@ package sharktron.ai;
 import java.util.LinkedList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import sharktron.RuntimeConfiguration;
 import sharktron.gameObjects.bots.Bot;
 import sharktron.logic.IUpdateable;
 import sharktron.rendering.DrawableGameComponent;
@@ -44,6 +45,7 @@ public class Swarm implements IDrawable, IUpdateable
      */
     public void addBot(Bot b)
     {
+        b.getPosition().setX(RuntimeConfiguration.WINDOW_WIDTH + 100);
         this.bots.add(b);
     }
 
@@ -70,6 +72,10 @@ public class Swarm implements IDrawable, IUpdateable
     public void update(GameContainer gc, int delta)
     {
         // Update Bot Behavior
+        for(Bot b : this.getBots())
+        {
+            b.getPosition().setX(b.getPosition().getX() -1);
+        }
     }
 
     @Override

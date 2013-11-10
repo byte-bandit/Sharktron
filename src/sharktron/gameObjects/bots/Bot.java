@@ -1,6 +1,7 @@
 package sharktron.gameObjects.bots;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import sharktron.logic.GameProgressionManager;
 import sharktron.rendering.DrawableGameComponent;
 
@@ -43,6 +44,13 @@ public abstract class Bot extends DrawableGameComponent
         GameProgressionManager.removeBot(this);
         this.disposable = true;
     }
+    
+    @Override
+    public void draw(Graphics g)
+    {
+        this.gfx.draw(this.getPosition().getX(), this.getPosition().getY());
+    }
+        
 
     @Override
     public boolean isDisposable()

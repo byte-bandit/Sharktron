@@ -3,6 +3,7 @@ package sharktron.logic;
 import java.util.Iterator;
 import java.util.LinkedList;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import sharktron.ai.Swarm;
 import sharktron.ai.Wave;
 import sharktron.gameObjects.bots.Bot;
@@ -177,5 +178,14 @@ public class GameProgressionManager
     public static void update(GameContainer gc, int delta)
     {
         getCurrentStage().update(gc, delta);
+    }
+    
+    /**
+     * Calls the draw method on all elements in the current stage
+     * @param g Graphics object to use for drawing
+     */
+    public static void draw(Graphics g)
+    {
+        getCurrentStage().draw(g);
     }
 }

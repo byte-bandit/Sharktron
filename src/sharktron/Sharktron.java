@@ -80,6 +80,7 @@ public class Sharktron extends BasicGame {
     public void render(GameContainer gc, Graphics g) throws SlickException
     {
         RenderingManager.render(g);
+        GameProgressionManager.draw(g);
         player.draw(g);
         
         g.drawString("UpdateManager: " + UpdateManager.size(), 10, 32);
